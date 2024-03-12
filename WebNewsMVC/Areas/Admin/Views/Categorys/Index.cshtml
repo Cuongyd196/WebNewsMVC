@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<WebNewsMVC.Models.Categorys>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<h2>Quản lý danh mục tin tức</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Categorys", FormMethod.Get)) // -- phần thêm mới Form tìm kiếm
+{
+    <p>
+        Từ khoá: @Html.TextBox("searchString")  <input type="submit" value="Tìm kiếm" />
+    </p>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Tên danh mục
+        </th>
+        <th>
+            Mô tả 
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Status)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.Category_ID }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.Category_ID }) |
+                @Html.ActionLink("Xoá", "Delete", new { id = item.Category_ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!-- Thêm phân trang -->
+<br />
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+<!-- Kết thúc -->

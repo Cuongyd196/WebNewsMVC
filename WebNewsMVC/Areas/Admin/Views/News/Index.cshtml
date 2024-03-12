@@ -1,0 +1,95 @@
+﻿@model PagedList.IPagedList<WebNewsMVC.Models.News>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<h2>Quản lý tin tức</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "News", FormMethod.Get)) // -- phần thêm mới Form tìm kiếm
+{
+    <p>
+        Từ khoá: @Html.TextBox("searchString")  <input type="submit" value="Tìm kiếm" />
+    </p>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Categorys.Category_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().New_Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().New_Summary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().New_img)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().New_Content)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().New_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().New_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().New_User_Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categorys.Category_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.New_Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.New_Summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.New_img)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.New_Content)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.New_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.New_Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.New_User_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.New_ID }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.New_ID }) |
+                @Html.ActionLink("Xoá", "Delete", new { id = item.New_ID })
+            </td>
+        </tr>
+    }
+
+</table>
+<!-- Thêm phân trang -->
+<br />
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+<!-- Kết thúc -->

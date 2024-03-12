@@ -1,0 +1,76 @@
+﻿@model WebNewsMVC.Models.News
+@{
+    ViewBag.Title = "DetailNews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Chi tiết tin tức</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorys.Category_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorys.Category_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_Summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_Summary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_img)
+        </dt>
+
+        <dd>
+            <img src="@Model.New_img" alt="Ảnh bìa" class="responsive-image" width="300px" height="200px">
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_Content)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.New_Content)*@
+            @Html.Raw(Model.New_Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_User_Name)
+        </dd>
+
+    </dl>
+</div>

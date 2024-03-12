@@ -1,0 +1,13 @@
+﻿@model IEnumerable<WebNewsMVC.Models.Categorys>
+
+    
+@foreach (var item in Model)
+{
+    <a class="m-1" style="text-decoration:none" 
+       href="@Url.Action("Index","Home", new {id = item.Category_ID})">
+       @Html.DisplayFor(modelItem => item.Category_Name)
+    </a>
+}
+
+
+

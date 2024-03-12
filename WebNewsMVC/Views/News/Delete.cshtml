@@ -1,0 +1,89 @@
+﻿@model WebNewsMVC.Models.News
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>News</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorys.Category_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorys.Category_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_Summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_Summary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.New_User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.New_User_Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

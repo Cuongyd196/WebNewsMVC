@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model IEnumerable<WebNewsMVC.Models.News>
+
+<div class="row">
+    <hr />
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-sm-6" style="border-width: 0.5px; 
+                border-style:groove;
+                margin-bottom:15px">
+            <center>
+                <a href="@Url.Action("DetailNews","Home", new {@id=item.New_ID })">
+                    <img src=@Url.Content("~" +item.New_img.ToString()) 
+                         class="img-responsive" 
+                         alt="" 
+                         width="250" 
+                         height="250" />
+                </a>
+            </center>
+            <h5>@item.New_Title </h5>
+            <h6 style="float:right" class="text-info">@item.Categorys.Category_Name </h6>
+        </div>
+    }
+</div>
